@@ -10,7 +10,7 @@ import os, random
 
 MODEL_ID = "openai/gpt-oss-20b"
 OUT = "output/grpo_gptoss20b_lora4_vav_td3"
-DATA_DIR = "data/vav"
+DATA_DIR = "data"
 
 TOTAL_STEPS = 200
 SAVE_STEPS = 20

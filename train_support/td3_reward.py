@@ -300,7 +300,7 @@ class TD3RewardModel:
     def __init__(
         self,
         *,
-        checkpoint_path: str | os.PathLike = "data/vav/td3_policy_final.pt",
+        checkpoint_path: str | os.PathLike = "data/td3_policy_final.pt",
         device: str | None = None,
         assume_state_normalized: bool = True,
     ) -> None:
@@ -451,7 +451,7 @@ class TD3RewardModel:
 
 
 def td3_model_from_env() -> TD3RewardModel:
-    path = os.getenv("TD3_CHECKPOINT_PATH", "data/vav/td3_policy_final.pt")
+    path = os.getenv("TD3_CHECKPOINT_PATH", "data/td3_policy_final.pt")
     device = os.getenv("TD3_CRITIC_DEVICE")
     assume_norm = os.getenv("TD3_ASSUME_NORMALIZED", "1") != "0"
     return TD3RewardModel(checkpoint_path=path, device=device, assume_state_normalized=assume_norm)
