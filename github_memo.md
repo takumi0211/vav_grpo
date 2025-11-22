@@ -3,5 +3,5 @@ git reset --hard origin/main
 git clean -fd
 
 git add -A
-git commit -m "fix error train_support/data_reward.py"
+git commit -m "well done episode=10"
 git push origin main
