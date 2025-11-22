@@ -9,7 +9,8 @@ import os, random
 # import os, random, logging
 
 MODEL_ID = "openai/gpt-oss-20b"
-OUT = "output/grpo_gptoss20b_lora4_tes"
+OUT = "output/grpo_gptoss20b_lora4_vav_td3"
+DATA_DIR = "data/vav"
 
 TOTAL_STEPS = 200
 SAVE_STEPS = 20
@@ -17,7 +18,7 @@ NUM_GENERATIONS = 16           # プロンプトごとにサンプルされる�
 GRADIENT_ACCUMULATION_STEPS = 4
 PROMPTS_PER_STEP = 1          # マイクロステップごとにサンプルされる異なるプロンプト数
 TRAIN_BATCH_SIZE = NUM_GENERATIONS  # マイクロバッチ = 1プロンプト分の完了数
-MAX_PROMPT_LEN = 1000
+MAX_PROMPT_LEN = 1400
 MAX_COMPLETION_LEN = 4000
 SEED = 42
 
@@ -58,9 +59,14 @@ lora = LoraConfig(
 model = get_peft_model(model, lora)
 
 # ----------------- Dataset (データローダ) ----------------
-base = load_prompt_dataset()
+base = load_prompt_dataset(data_dir=DATA_DIR)
 random.seed(SEED)
-stream = StepStream(base, k=PROMPTS_PER_STEP, num_generations=NUM_GENERATIONS)
+stream = StepStream(
+    base,
+    k=PROMPTS_PER_STEP,
+    num_generations=NUM_GENERATIONS,
+    extra_keys=("state_json", "state_raw_json", "sample_id"),
+)
 
 # ----------------- TRL/GRPO + vLLM (colocate) -----------------
 # colocate: 学習プロセス内でvLLMを起動（省メモリのため sleep を有効化）。

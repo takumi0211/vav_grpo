@@ -3,5 +3,5 @@ git reset --hard origin/main
 git clean -fd
 
 git add -A
-git commit -m "before do task by codex"
+git commit -m "well done setting with codex"
 git push origin main

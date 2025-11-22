@@ -19,17 +19,23 @@ class StepStream(IterableDataset):
         "prompt",
     )
 
-    def __init__(self, base_ds, k, num_generations):
+    def __init__(self, base_ds, k, num_generations, extra_keys=None):
         self.base = base_ds
         self.n = len(base_ds)
         if self.n == 0:
             raise ValueError("StepStream requires a non-empty dataset.")
         self.k = min(k, self.n)
         self.num_generations = num_generations
+
+        extra_keys = tuple(extra_keys or ())
+
         # Use only columns that actually exist in the dataset.
         dense_keys = [key for key in self.KEEP_KEYS if key in base_ds.features and key != "prompt"]
         if "prompt" in base_ds.features:
             dense_keys.append("prompt")
+        for key in extra_keys:
+            if key in base_ds.features and key not in dense_keys:
+                dense_keys.append(key)
         self.keys = dense_keys
 
     def __iter__(self):
@@ -41,6 +47,9 @@ class StepStream(IterableDataset):
                 for key in self.keys:
                     value = row[key]
                     if key == "prompt":
+                        sample[key] = value
+                    elif isinstance(value, (str, bytes)):
+                        # Non-numeric metadata (state_json, sample_id string, etc.)
                         sample[key] = value
                     else:
                         sample[key] = torch.atleast_1d(
