@@ -83,8 +83,8 @@ uv pip install --no-build-isolation \
 ## 3. リポジトリの取得（1分）
 
 ```
-git clone https://github.com/takumi0211/tes_grpo_trl.git -b main
-cd tes_grpo_trl
+git clone https://github.com/takumi0211/vav_grpo.git -b main
+cd vav_grpo
 ```
 
 （既存ワークツリーがある場合はこの手順は不要）
