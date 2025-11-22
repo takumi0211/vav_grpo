@@ -414,9 +414,17 @@ def td3_reward_fn(
             if scored_sample.q_mean is not None:
                 q_mean_values[idx] = float(scored_sample.q_mean)
 
-    softmax = softmax_from_scores(q_min_values, temperature)
-    for idx, val in enumerate(softmax):
-        rewards[idx] = float(val) if isinstance(val, (float, np.floating)) and math.isfinite(val) else math.nan
+    # Compute softmax per micro-step so each micro batch sums to ~1.
+    for micro_idx in range(steps_per_generation):
+        start = micro_idx * completions_per_micro
+        end = min(start + completions_per_micro, size)
+        if start >= end:
+            continue
+        segment = q_min_values[start:end]
+        softmax = softmax_from_scores(segment, temperature)
+        for offset, val in enumerate(softmax):
+            idx = start + offset
+            rewards[idx] = float(val) if isinstance(val, (float, np.floating)) and math.isfinite(val) else math.nan
 
     if CSV_LOG_ENABLED and size:
         _init_csv_logger()
