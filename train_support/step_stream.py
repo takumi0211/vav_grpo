@@ -29,13 +29,32 @@ class StepStream(IterableDataset):
 
         extra_keys = tuple(extra_keys or ())
 
-        # Use only columns that actually exist in the dataset.
-        dense_keys = [key for key in self.KEEP_KEYS if key in base_ds.features and key != "prompt"]
+        # Build key order so that at least one numeric/tensor field appears first.
+        reward_keys = [
+            key for key in self.KEEP_KEYS if key.startswith("reward") and key in base_ds.features
+        ]
+        numeric_pref = []
+        for key in ("sample_id", "episode_id", "step", "idx"):
+            if key in base_ds.features and key not in reward_keys:
+                numeric_pref.append(key)
+
+        aux_keys = []
+        for key in extra_keys:
+            if key == "prompt":
+                continue  # force prompt to the end
+            if key in base_ds.features and key not in reward_keys and key not in numeric_pref:
+                aux_keys.append(key)
+
+        dense_keys = reward_keys + numeric_pref + aux_keys
+
+        # Prompt is kept last so Accelerate's find_batch_size sees a tensor first.
         if "prompt" in base_ds.features:
             dense_keys.append("prompt")
-        for key in extra_keys:
-            if key in base_ds.features and key not in dense_keys:
-                dense_keys.append(key)
+
+        # Fallback: if nothing tensor-like is available, inject a dummy key.
+        if not dense_keys or dense_keys[0] == "prompt":
+            dense_keys.insert(0, "_dummy_batch_size")
+
         self.keys = dense_keys
 
     def __iter__(self):
@@ -45,6 +64,10 @@ class StepStream(IterableDataset):
                 row = self.base[i]
                 sample = {}
                 for key in self.keys:
+                    if key == "_dummy_batch_size":
+                        sample[key] = torch.tensor([0.0], dtype=torch.float32)
+                        continue
+
                     value = row[key]
                     if key == "prompt":
                         sample[key] = value
