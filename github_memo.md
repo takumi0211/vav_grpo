@@ -3,5 +3,5 @@ git reset --hard origin/main
 git clean -fd
 
 git add -A
-git commit -m "well done episode=10"
+git commit -m "update data/vav_prompts_harmony.csv"
 git push origin main
