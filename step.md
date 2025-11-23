@@ -111,7 +111,7 @@ python train_grpo.py
 
 ```
 # run ディレクトリを ZIP に固める（例）
-zip -r grpo_run.zip output
+zip -r grpo_run_vav.zip output
 ```
 
 ZIP 化した `grpo_run.zip` を `scp` / `rsync` / VS Code Remote などでダウンロードすれば完了です。
