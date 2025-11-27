@@ -359,7 +359,7 @@ class TD3RewardModel:
             eps=self.config.obs_norm_eps,
         )
         normalizer.load_state_dict(obs_state)
-        self.normalizer = normalizer
+        self.normalizer = normalizer.to(self.device)
 
         chs = getattr(self.config, "critic_hidden_sizes", None)
         h_default = (256, 256)
