@@ -3,7 +3,6 @@
 #   1. Merge LoRA into the base model via `python export_quantized_model.py`
 #      (creates the merged folder under `OUTPUT_DIR`).
 #   2. Upload the merged folder to Hugging Face if needed.
-#   3. Set the `MODEL_ID` below to the uploaded repo.
 #   4. Run `python run_exported_model.py` to generate text from `PROMPT_PATH`.
 
 from pathlib import Path
@@ -12,7 +11,7 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 # パラメータ設定
-MODEL_ID = "takumi0211/tes_grpo"
+MODEL_ID = "takumi0211/vav_grpo"
 PROMPT_PATH = Path("data/test.md")
 MAX_NEW_TOKENS = 4000
 TEMPERATURE = 0.8

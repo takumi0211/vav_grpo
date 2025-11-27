@@ -5,7 +5,7 @@ quantization hint (MXFP4) alongside the merged weights.
 
 Export procedure (update constants below if paths differ):
   1. export HF_TOKEN=<your token>
-  2. export HF_REPO_ID=<your repo id> ex) takumi0211/tes_grpo_trl
+  2. export HF_REPO_ID=<your repo id> ex) takumi0211/vav_grpo
   3. Run `python export_quantized_model.py`
 """
 import json
@@ -19,14 +19,14 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, Mxfp4Config
 
 # ----- Export parameters -----
 BASE_MODEL_ID = "openai/gpt-oss-20b"
-ADAPTER_PATH = Path("output/grpo_gptoss20b_lora4_tes")  # output/ を使う場合はこの行を有効化
-# ADAPTER_PATH = Path("runs_10step分/grpo_gptoss20b_lora4_tes")
-OUTPUT_DIR = Path("exports/grpo_gptoss20b_lora4_tes_merged")
+# LoRA チェックポイント（今回の再開学習の出力先）
+ADAPTER_PATH = Path("output/grpo_gptoss20b_lora4_vav_td3")
+OUTPUT_DIR = Path("exports/grpo_gptoss20b_lora4_vav_td3_merged")
 SAFE_SERIALIZATION = True  # set False to save as PyTorch binaries (.bin)
 PUSH_TO_HUB = True
 CREATE_REPO = True
 REPO_ID = os.getenv("HF_REPO_ID")
-COMMIT_MESSAGE = "Add merged LoRA weights with MXFP4 config"
+COMMIT_MESSAGE = "Add merged LoRA weights with MXFP4 config (vav_td3)"
 TOKEN_ENV = "HF_TOKEN"
 
 # 出力ディレクトリの作成
