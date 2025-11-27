@@ -302,7 +302,7 @@ class TD3RewardModel:
         *,
         checkpoint_path: str | os.PathLike = "data/td3_policy_final.pt",
         device: str | None = None,
-        assume_state_normalized: bool = True,
+        assume_state_normalized: bool = False,
     ) -> None:
         self.checkpoint_path = pathlib.Path(checkpoint_path)
         self.device = _default_device(device)
@@ -445,6 +445,7 @@ class TD3RewardModel:
         q_mean = 0.5 * (q1_np + q2_np)
 
         for idx, sample in enumerate(bucket):
+            # より安全側を使う: twin-Qの最小値
             sample.q_min = float(q1_np[idx])  # use q1 for rewards
             sample.q_mean = float(q_mean[idx])
         return bucket
@@ -453,5 +454,6 @@ class TD3RewardModel:
 def td3_model_from_env() -> TD3RewardModel:
     path = os.getenv("TD3_CHECKPOINT_PATH", "data/td3_policy_final.pt")
     device = os.getenv("TD3_CRITIC_DEVICE")
-    assume_norm = os.getenv("TD3_ASSUME_NORMALIZED", "1") != "0"
+    # デフォルトで正規化を適用（state_jsonが既にスケール済みと思ってもズレが出るため）
+    assume_norm = os.getenv("TD3_ASSUME_NORMALIZED", "0") != "0"
     return TD3RewardModel(checkpoint_path=path, device=device, assume_state_normalized=assume_norm)
