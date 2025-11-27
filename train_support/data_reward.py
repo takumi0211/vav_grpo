@@ -53,6 +53,7 @@ CSV_COLUMNS = [
     "action",
     "reward",
     "target_action",
+    "q_min_ideal",
     "q_min",
     "q_mean",
     "error",
@@ -194,6 +195,22 @@ def _broadcast_any(value: Any, size: int) -> list:
     return repeated
 
 
+def _to_scalar(val: Any):
+    """Best-effort conversion to a float for CSV logging."""
+
+    try:
+        if hasattr(val, "item"):
+            return val.item()
+    except Exception:
+        pass
+    if isinstance(val, (list, tuple)) and len(val) == 1:
+        return _to_scalar(val[0])
+    try:
+        return float(val)
+    except Exception:
+        return val
+
+
 def _legacy_reward_fn(
     completions,
     reward_action_0,
@@ -275,6 +292,7 @@ def _legacy_reward_fn(
             prompts = kwargs.get("prompt") or kwargs.get("prompts") or []
             if isinstance(prompts, str):
                 prompts = [prompts]
+            q_min_ideal_values = _broadcast_any(kwargs.get("q_min_ideal"), size)
             global_step = getattr(trainer_state, "global_step", -1)
             step_value = global_step if (global_step is not None and global_step >= 0) else _MICRO_STEP_COUNTER
             for idx, (completion, reward_val, action_token, target_action) in enumerate(
@@ -290,6 +308,10 @@ def _legacy_reward_fn(
                 reward_csv = reward_val
                 if isinstance(reward_val, float) and math.isnan(reward_val):
                     reward_csv = "NaN"
+                q_min_ideal_val = q_min_ideal_values[idx] if idx < len(q_min_ideal_values) else None
+                q_min_ideal_csv = _to_scalar(q_min_ideal_val)
+                if q_min_ideal_csv is None:
+                    q_min_ideal_csv = ""
                 _CSV_WRITER.writerow(
                     [
                         step_value,
@@ -299,6 +321,7 @@ def _legacy_reward_fn(
                         action_token,
                         reward_csv,
                         target_action,
+                        q_min_ideal_csv,
                         "",  # q_min placeholder for legacy mode
                         "",  # q_mean placeholder for legacy mode
                         "",  # error placeholder for legacy mode
@@ -431,6 +454,7 @@ def td3_reward_fn(
         if _CSV_WRITER is not None:
             global_step = getattr(trainer_state, "global_step", -1)
             step_value = global_step if (global_step is not None and global_step >= 0) else _MICRO_STEP_COUNTER
+            q_min_ideal_values = _broadcast_any(kwargs.get("q_min_ideal"), size)
             for idx, completion in enumerate(completions):
                 prompt_text = prompts[idx % len(prompts)] if prompts else ""
                 micro_step_value = min(
@@ -440,6 +464,10 @@ def td3_reward_fn(
                 reward_csv = rewards[idx]
                 if isinstance(reward_csv, float) and math.isnan(reward_csv):
                     reward_csv = "NaN"
+                q_min_ideal_val = q_min_ideal_values[idx] if idx < len(q_min_ideal_values) else None
+                q_min_ideal_csv = _to_scalar(q_min_ideal_val)
+                if q_min_ideal_csv is None:
+                    q_min_ideal_csv = ""
                 _CSV_WRITER.writerow(
                     [
                         step_value,
@@ -449,6 +477,7 @@ def td3_reward_fn(
                         action_summaries[idx],
                         reward_csv,
                         "",  # target_action not used in TD3 mode
+                        q_min_ideal_csv,
                         q_min_values[idx],
                         q_mean_values[idx],
                         errors[idx],

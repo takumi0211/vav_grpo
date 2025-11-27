@@ -65,7 +65,7 @@ stream = StepStream(
     base,
     k=PROMPTS_PER_STEP,
     num_generations=NUM_GENERATIONS,
-    extra_keys=("state_json", "state_raw_json", "sample_id"),
+    extra_keys=("state_json", "state_raw_json", "sample_id", "q_min_ideal"),
 )
 
 # ----------------- TRL/GRPO + vLLM (colocate) -----------------
