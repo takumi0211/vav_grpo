@@ -43,7 +43,7 @@ from simulator_humid.simulation import create_plots, run_simulation
 # Generation settings (match run_deploy/run_exported_model.py defaults)
 # ---------------------------------------------------------------------------
 MODEL_ID = "takumi0211/vav_grpo"
-MAX_NEW_TOKENS = 400  # smaller than 4000 to keep the control loop responsive
+MAX_NEW_TOKENS = 4000  # smaller than 4000 to keep the control loop responsive
 TEMPERATURE = 0.8
 TOP_P = 0.95
 DO_SAMPLE = True
