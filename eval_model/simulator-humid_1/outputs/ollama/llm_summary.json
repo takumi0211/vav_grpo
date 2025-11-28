@@ -1,0 +1,8 @@
+{
+  "model": "gpt-oss:20b",
+  "total_reward": -2029.8424072265625,
+  "mean_reward_active": -3.383070945739746,
+  "active_steps": 600,
+  "results_csv": "llm_simulation_results.csv",
+  "action_log_csv": "llm_actions_log.csv"
+}

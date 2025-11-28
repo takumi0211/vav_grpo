@@ -1,0 +1,11 @@
+=== ベスト更新 ===
+Episode: 1
+total_return: -2029.8424
+平均温度誤差: 0.937°C
+快適域違反率: 0.342
+平均電力消費: 10.606kW
+総電力量: 106.061kWh
+平均CO2濃度: 916.6ppm
+最大CO2濃度: 1141.1ppm
+co2_penalty: 0.443, co2_violation_penalty: 0.217
+

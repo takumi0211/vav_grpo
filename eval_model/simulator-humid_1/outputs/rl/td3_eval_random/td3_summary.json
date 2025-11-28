@@ -1,0 +1,21 @@
+{
+  "checkpoint": "C:\\Users\\NagaiLab\\Documents\\vav-humid\\outputs\\rl\\td3_policy_final.pt",
+  "device": "cuda",
+  "run_id": "td3_eval",
+  "total_reward": -688.585205078125,
+  "active_steps": 600,
+  "mean_reward_active": -1.1476420164108276,
+  "llm_metrics": {
+    "mean_temp_error": 0.2843937444025454,
+    "max_temp_error": 2.8662145990920074,
+    "comfort_violation_ratio": 0.04,
+    "mean_power_kw": 9.512738279509293,
+    "total_power_kwh": 95.12738279509293,
+    "mean_co2_ppm": 870.4226433864549,
+    "max_co2_ppm": 1073.795139712869,
+    "mean_co2_penalty": 0.0785043715956534,
+    "mean_co2_violation_penalty": 0.0
+  },
+  "results_csv": "C:\\Users\\NagaiLab\\Documents\\vav-humid\\outputs\\rl\\td3_eval\\td3_simulation_results.csv",
+  "plots_dir": "C:\\Users\\NagaiLab\\Documents\\vav-humid\\outputs\\rl\\td3_eval\\plots"
+}

@@ -1,0 +1,8 @@
+{
+  "model": "o4-mini",
+  "total_reward": -1162.218994140625,
+  "mean_reward_active": -1.937031626701355,
+  "active_steps": 600,
+  "results_csv": "llm_simulation_results.csv",
+  "action_log_csv": "llm_actions_log.csv"
+}

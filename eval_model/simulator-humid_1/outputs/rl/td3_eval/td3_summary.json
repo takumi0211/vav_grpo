@@ -1,0 +1,21 @@
+{
+  "checkpoint": "/Users/takumishioda/Documents/simulator-humid/outputs/rl/td3_policy_final.pt",
+  "device": "cpu",
+  "run_id": "td3_eval",
+  "total_reward": -636.5196533203125,
+  "active_steps": 600,
+  "mean_reward_active": -1.060866117477417,
+  "llm_metrics": {
+    "mean_temp_error": 0.21938833320931544,
+    "max_temp_error": 2.8661524571741914,
+    "comfort_violation_ratio": 0.035416666666666666,
+    "mean_power_kw": 9.404473110345174,
+    "total_power_kwh": 94.04473110345174,
+    "mean_co2_ppm": 876.5546843523719,
+    "max_co2_ppm": 1010.921533706478,
+    "mean_co2_penalty": 0.042848057593401864,
+    "mean_co2_violation_penalty": 0.0
+  },
+  "results_csv": "/Users/takumishioda/Documents/simulator-humid/outputs/rl/td3_eval/td3_simulation_results.csv",
+  "plots_dir": "/Users/takumishioda/Documents/simulator-humid/outputs/rl/td3_eval/plots"
+}

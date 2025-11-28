@@ -1,0 +1,55 @@
+=== ベスト更新 ===
+Episode: 1
+total_return: -990.3901
+平均温度誤差: 0.366°C
+快適域違反率: 0.038
+平均電力消費: 9.036kW
+総電力量: 90.357kWh
+平均CO2濃度: 925.3ppm
+最大CO2濃度: 1053.9ppm
+co2_penalty: 0.506, co2_violation_penalty: 0.000
+
+=== ベスト更新 ===
+Episode: 1
+total_return: -1024.4817
+平均温度誤差: 0.362°C
+快適域違反率: 0.057
+平均電力消費: 9.477kW
+総電力量: 94.769kWh
+平均CO2濃度: 927.8ppm
+最大CO2濃度: 1054.5ppm
+co2_penalty: 0.464, co2_violation_penalty: 0.000
+
+=== ベスト更新 ===
+Episode: 1
+total_return: -1046.7129
+平均温度誤差: 0.362°C
+快適域違反率: 0.052
+平均電力消費: 9.392kW
+総電力量: 93.922kWh
+平均CO2濃度: 929.2ppm
+最大CO2濃度: 1074.8ppm
+co2_penalty: 0.551, co2_violation_penalty: 0.000
+
+=== ベスト更新 ===
+Episode: 1
+total_return: -1079.6180
+平均温度誤差: 0.402°C
+快適域違反率: 0.052
+平均電力消費: 9.679kW
+総電力量: 96.788kWh
+平均CO2濃度: 912.8ppm
+最大CO2濃度: 1061.0ppm
+co2_penalty: 0.470, co2_violation_penalty: 0.000
+
+=== ベスト更新 ===
+Episode: 1
+total_return: -965.2550
+平均温度誤差: 0.355°C
+快適域違反率: 0.036
+平均電力消費: 9.084kW
+総電力量: 90.840kWh
+平均CO2濃度: 919.0ppm
+最大CO2濃度: 1051.2ppm
+co2_penalty: 0.421, co2_violation_penalty: 0.000
+

@@ -1,0 +1,8 @@
+{
+  "model": "gpt-5.1",
+  "total_reward": -1163.0826416015625,
+  "mean_reward_active": -1.9384710788726807,
+  "active_steps": 600,
+  "results_csv": "llm_simulation_results.csv",
+  "action_log_csv": "llm_actions_log.csv"
+}

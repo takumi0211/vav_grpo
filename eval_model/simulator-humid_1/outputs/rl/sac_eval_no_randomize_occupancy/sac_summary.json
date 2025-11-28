@@ -1,0 +1,21 @@
+{
+  "checkpoint": "C:\\Users\\NagaiLab\\Documents\\vav-humid\\outputs\\rl\\sac_policy_final_no_randomize_occupancy.pt",
+  "device": "cuda",
+  "run_id": "sac_eval_no_randomize_occupancy",
+  "total_reward": -687.5299072265625,
+  "active_steps": 600,
+  "mean_reward_active": -1.1458832025527954,
+  "llm_metrics": {
+    "mean_temp_error": 0.29327299831782294,
+    "max_temp_error": 2.864921803249974,
+    "comfort_violation_ratio": 0.034583333333333334,
+    "mean_power_kw": 9.572887761001482,
+    "total_power_kwh": 95.7288776100148,
+    "mean_co2_ppm": 873.6563191875564,
+    "max_co2_ppm": 1003.6762927768733,
+    "mean_co2_penalty": 0.04166071628159869,
+    "mean_co2_violation_penalty": 0.0
+  },
+  "results_csv": "C:\\Users\\NagaiLab\\Documents\\vav-humid\\outputs\\rl\\sac_eval_no_randomize_occupancy\\sac_simulation_results.csv",
+  "plots_dir": "C:\\Users\\NagaiLab\\Documents\\vav-humid\\outputs\\rl\\sac_eval_no_randomize_occupancy\\plots"
+}

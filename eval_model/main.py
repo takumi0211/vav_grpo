@@ -22,12 +22,12 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 # Path setup so we can import the simulator package without modifying it
 # ---------------------------------------------------------------------------
 ROOT_DIR = Path(__file__).resolve().parent
-SIM_ROOT = ROOT_DIR / "simulator-humid"
+SIM_ROOT = ROOT_DIR / "simulator-humid_1"
 if str(SIM_ROOT) not in sys.path:
     sys.path.insert(0, str(SIM_ROOT))
 
 # Import after sys.path adjustment
-from simulator_humid.agents.ollama_agent import (
+from simulator_humid_1.agents.ollama_agent import (
     LLMConfig,
     LLMDecisionController,
     build_action_scaler,
@@ -36,7 +36,7 @@ from simulator_humid.agents.ollama_agent import (
     compute_llm_metrics,
     compute_step_rewards,
 )
-from simulator_humid.simulation import create_plots, run_simulation
+from simulator_humid_1.simulation import create_plots, run_simulation
 
 
 # ---------------------------------------------------------------------------
