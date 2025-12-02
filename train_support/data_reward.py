@@ -84,8 +84,12 @@ def _init_csv_logger() -> None:
 def _close_csv_logger() -> None:
     global _CSV_FILE, _CSV_WRITER
     if _CSV_FILE is not None:
-        _CSV_FILE.flush()
-        _CSV_FILE.close()
+        try:
+            _CSV_FILE.flush()
+            _CSV_FILE.close()
+        except ValueError:
+            # Already closed; safe to ignore
+            pass
     _CSV_FILE = None
     _CSV_WRITER = None
 
@@ -366,12 +370,7 @@ def td3_reward_fn(
         return []
 
     # Lazy import to avoid pulling simulator dependencies unless needed.
-    from train_support.td3_reward import (
-        ParsedSample,
-        parse_state_vector,
-        softmax_from_scores,
-        td3_model_from_env,
-    )
+    from train_support.td3_reward import ParsedSample, softmax_from_scores, td3_model_from_env
 
     trainer_state = kwargs.get("trainer_state")
 
@@ -393,8 +392,9 @@ def td3_reward_fn(
     if token_sequences and not mask_sequences:
         mask_sequences = [[] for _ in token_sequences]
 
-    use_pre_normalized = state_json_normalize is not None
-    states_norm = _broadcast_any(state_json_normalize if use_pre_normalized else state_json, size)
+    # Prefer full-precision state if present; otherwise fall back to the normalized snapshot.
+    states_primary = _broadcast_any(state_json, size)
+    states_fallback = _broadcast_any(state_json_normalize, size)
     states_raw = _broadcast_any(state_raw_json, size)
     prompts = kwargs.get("prompt") or kwargs.get("prompts") or []
     if isinstance(prompts, str):
@@ -403,6 +403,7 @@ def td3_reward_fn(
     if _TD3_MODEL_CACHE is None:
         _TD3_MODEL_CACHE = td3_model_from_env()
     model = _TD3_MODEL_CACHE
+    scaler = model.scaler
 
     temperature = float(os.getenv("TD3_SOFTMAX_TEMP", os.getenv("TD3_SOFTMAX_TAU", "0.5")))
 
@@ -437,15 +438,9 @@ def td3_reward_fn(
             continue
 
         try:
-            if use_pre_normalized:
-                obs_vec = parse_state_vector(states_norm[idx])
-                if obs_vec is None:
-                    raise ValueError("state_json_normalize is missing or invalid.")
-                if obs_vec.shape[0] != model.obs_dim:
-                    raise ValueError(f"Normalized state length {obs_vec.shape[0]} != expected {model.obs_dim}.")
-                obs_vec = obs_vec.astype(np.float32, copy=False)
-            else:
-                obs_vec = model._resolve_obs(states_norm[idx], states_raw[idx])
+            primary = states_primary[idx] if idx < len(states_primary) else None
+            fallback = states_fallback[idx] if idx < len(states_fallback) else None
+            obs_vec = model._resolve_obs(primary if primary is not None else fallback, states_raw[idx])
         except Exception as exc:  # pragma: no cover - defensive
             errors[idx] = str(exc)
             continue
@@ -461,7 +456,7 @@ def td3_reward_fn(
         valid_indices.append(idx)
 
     if valid_samples:
-        scored = model.score_batch(valid_samples, assume_obs_normalized=use_pre_normalized)
+        scored = model.score_batch(valid_samples, assume_obs_normalized=False)
         for scored_sample, idx in zip(scored, valid_indices):
             if scored_sample.q_min is not None:
                 q1_values[idx] = float(scored_sample.q_min)  # q_min stores q1 in TD3RewardModel
@@ -510,7 +505,12 @@ def td3_reward_fn(
                 if sample_id_csv is None:
                     sample_id_csv = ""
                 selected_action_val = selected_actions[idx] if idx < len(selected_actions) else None
-                selected_action_csv = selected_action_val if selected_action_val is not None else ""
+                selected_action_csv = (
+                    json.dumps(selected_action_val, ensure_ascii=False)
+                    if isinstance(selected_action_val, (dict, list))
+                    else (selected_action_val if selected_action_val is not None else "")
+                )
+                action_payload = action_summaries[idx] if action_summaries[idx] else ""
                 _CSV_WRITER.writerow(
                     [
                         step_value,
@@ -518,7 +518,7 @@ def td3_reward_fn(
                         sample_id_csv,
                         prompt_text,
                         completion,
-                        action_summaries[idx],
+                        json.dumps(action_payload, ensure_ascii=False) if action_payload else "",
                         reward_csv,
                         "",  # target_action not used in TD3 mode
                         q1_csv,
