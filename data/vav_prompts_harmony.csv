@@ -13,11 +13,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -114,11 +111,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -215,11 +209,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -316,11 +307,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -417,11 +405,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -518,11 +503,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -619,11 +601,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -720,11 +699,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -821,11 +797,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -922,11 +895,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -1023,11 +993,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -1124,11 +1091,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -1225,11 +1189,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -1326,11 +1287,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -1427,11 +1385,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -1528,11 +1483,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -1629,11 +1581,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -1730,11 +1679,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -1831,11 +1777,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -1932,11 +1875,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -2033,11 +1973,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -2134,11 +2071,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -2235,11 +2169,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -2336,11 +2267,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -2437,11 +2365,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -2538,11 +2463,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -2639,11 +2561,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -2740,11 +2659,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -2841,11 +2757,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -2942,11 +2855,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -3043,11 +2953,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -3144,11 +3051,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -3245,11 +3149,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -3346,11 +3247,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -3447,11 +3345,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -3548,11 +3443,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -3649,11 +3541,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -3750,11 +3639,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -3851,11 +3737,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -3952,11 +3835,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -4053,11 +3933,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -4154,11 +4031,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -4255,11 +4129,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -4356,11 +4227,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -4457,11 +4325,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -4558,11 +4423,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -4659,11 +4521,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -4760,11 +4619,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -4861,11 +4717,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -4962,11 +4815,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -5063,11 +4913,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -5164,11 +5011,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -5265,11 +5109,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -5366,11 +5207,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -5467,11 +5305,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -5568,11 +5403,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -5669,11 +5501,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -5770,11 +5599,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -5871,11 +5697,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -5972,11 +5795,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -6073,11 +5893,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -6174,11 +5991,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -6275,11 +6089,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -6376,11 +6187,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -6477,11 +6285,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -6578,11 +6383,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -6679,11 +6481,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -6780,11 +6579,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -6881,11 +6677,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -6982,11 +6775,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -7083,11 +6873,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -7184,11 +6971,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -7285,11 +7069,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -7386,11 +7167,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -7487,11 +7265,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -7588,11 +7363,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -7689,11 +7461,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -7790,11 +7559,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -7891,11 +7657,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -7992,11 +7755,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -8093,11 +7853,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -8194,11 +7951,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -8295,11 +8049,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -8396,11 +8147,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -8497,11 +8245,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -8598,11 +8343,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -8699,11 +8441,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -8800,11 +8539,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -8901,11 +8637,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -9002,11 +8735,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -9103,11 +8833,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -9204,11 +8931,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -9305,11 +9029,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -9406,11 +9127,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -9507,11 +9225,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -9608,11 +9323,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -9709,11 +9421,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -9810,11 +9519,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -9911,11 +9617,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
@@ -10012,11 +9715,8 @@ You are a supervisory decision-making agent for a multi-zone VAV HVAC system. Th
 - Electrical power to minimise (use these relations for trade-offs):
     Fan power: P_fan ≈ P_fan_ref * (f/1.0)^3, where 'fan_speed' f is relative speed (1.0 = nominal).
     Pump power (water-side via coil): P_pump ≈ P_pump_ref * (w/1.0)^3, where w is proportional to water flow (use 'coil_valve' as a proxy).
-    Increasing water flow is usually cheaper than increasing fan speed for the same load.
     Total power to minimise: P_total = P_fan + P_pump (+ chiller/compressor if applicable). Reducing outdoor air also reduces coil/chiller power.
-- Static-pressure reset logic: keep at least one zone damper at 100% open; minimising throttling loss lowers the required static pressure and reduces fan power.
 - Avoid abrupt actuator changes unless a constraint would be violated.
-
 
 Developer instructions: Formatting rules: respond with a single JSON object. Use keys 'thought_process' (string) and 'action' (object). The 'action' object must include 'zone_dampers' (list of length 4), 'oa_damper', 'coil_valve', and 'fan_speed'. Provide the thought_process as explicit step-by-step reasoning. Return numeric values as floats; clip them to the provided bounds before finalising.
 
