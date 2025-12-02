@@ -48,15 +48,17 @@ _MICRO_STEP_COUNTER = 0
 CSV_COLUMNS = [
     "step",
     "micro_step",
+    "sample_id",
     "prompt",
     "completion",
     "action",
     "reward",
     "target_action",
-    "q_min_ideal",
-    "q_min",
+    "q1",
     "q_mean",
     "error",
+    "selected_action",
+    "q1_ideal",
 ]
 _TD3_MODEL_CACHE = None
 
@@ -93,6 +95,10 @@ atexit.register(_close_csv_logger)
 # プロンプトデータセットを読み込む関数
 def load_prompt_dataset(data_dir: str = "data", harmony_only: bool = True) -> Dataset:
     """Load all CSV prompts (defaults to Harmony-formatted files)."""
+
+    preferred = os.path.join(data_dir, "grpo_dataset.csv")
+    if os.path.isfile(preferred):
+        return load_dataset("csv", data_files=[preferred], split="train")
 
     def _list(pattern):
         return sorted(glob(os.path.join(data_dir, pattern)))
@@ -292,7 +298,9 @@ def _legacy_reward_fn(
             prompts = kwargs.get("prompt") or kwargs.get("prompts") or []
             if isinstance(prompts, str):
                 prompts = [prompts]
-            q_min_ideal_values = _broadcast_any(kwargs.get("q_min_ideal"), size)
+            sample_ids = _broadcast_any(kwargs.get("sample_id"), size)
+            selected_actions = _broadcast_any(kwargs.get("selected_action"), size)
+            q1_ideal_values = _broadcast_any(kwargs.get("q1") or kwargs.get("q1_ideal"), size)
             global_step = getattr(trainer_state, "global_step", -1)
             step_value = global_step if (global_step is not None and global_step >= 0) else _MICRO_STEP_COUNTER
             for idx, (completion, reward_val, action_token, target_action) in enumerate(
@@ -308,23 +316,31 @@ def _legacy_reward_fn(
                 reward_csv = reward_val
                 if isinstance(reward_val, float) and math.isnan(reward_val):
                     reward_csv = "NaN"
-                q_min_ideal_val = q_min_ideal_values[idx] if idx < len(q_min_ideal_values) else None
-                q_min_ideal_csv = _to_scalar(q_min_ideal_val)
-                if q_min_ideal_csv is None:
-                    q_min_ideal_csv = ""
+                q1_ideal_val = q1_ideal_values[idx] if idx < len(q1_ideal_values) else None
+                q1_ideal_csv = _to_scalar(q1_ideal_val)
+                if q1_ideal_csv is None:
+                    q1_ideal_csv = ""
+                sample_id_val = sample_ids[idx] if idx < len(sample_ids) else None
+                sample_id_csv = _to_scalar(sample_id_val)
+                if sample_id_csv is None:
+                    sample_id_csv = ""
+                selected_action_val = selected_actions[idx] if idx < len(selected_actions) else None
+                selected_action_csv = selected_action_val if selected_action_val is not None else ""
                 _CSV_WRITER.writerow(
                     [
                         step_value,
                         micro_step_value,
+                        sample_id_csv,
                         prompt_text,
                         completion,
                         action_token,
                         reward_csv,
                         target_action,
-                        q_min_ideal_csv,
-                        "",  # q_min placeholder for legacy mode
+                        "",  # q1 placeholder for legacy mode
                         "",  # q_mean placeholder for legacy mode
                         "",  # error placeholder for legacy mode
+                        selected_action_csv,
+                        q1_ideal_csv,
                     ]
                 )
             if _CSV_FILE is not None:
@@ -338,6 +354,7 @@ def td3_reward_fn(
     completions,
     state_json=None,
     state_raw_json=None,
+    state_json_normalize=None,
     **kwargs,
 ):
     """Reward function that scores actions with the TD3 critic on-the-fly."""
@@ -349,7 +366,12 @@ def td3_reward_fn(
         return []
 
     # Lazy import to avoid pulling simulator dependencies unless needed.
-    from train_support.td3_reward import ParsedSample, softmax_from_scores, td3_model_from_env
+    from train_support.td3_reward import (
+        ParsedSample,
+        parse_state_vector,
+        softmax_from_scores,
+        td3_model_from_env,
+    )
 
     trainer_state = kwargs.get("trainer_state")
 
@@ -371,7 +393,8 @@ def td3_reward_fn(
     if token_sequences and not mask_sequences:
         mask_sequences = [[] for _ in token_sequences]
 
-    states_norm = _broadcast_any(state_json, size)
+    use_pre_normalized = state_json_normalize is not None
+    states_norm = _broadcast_any(state_json_normalize if use_pre_normalized else state_json, size)
     states_raw = _broadcast_any(state_raw_json, size)
     prompts = kwargs.get("prompt") or kwargs.get("prompts") or []
     if isinstance(prompts, str):
@@ -383,7 +406,7 @@ def td3_reward_fn(
 
     temperature = float(os.getenv("TD3_SOFTMAX_TEMP", os.getenv("TD3_SOFTMAX_TAU", "0.5")))
 
-    q_min_values: List[float] = [math.nan] * size
+    q1_values: List[float] = [math.nan] * size
     q_mean_values: List[float] = [math.nan] * size
     rewards: List[float] = [math.nan] * size
     action_summaries: List[str] = [""] * size
@@ -414,7 +437,15 @@ def td3_reward_fn(
             continue
 
         try:
-            obs_vec = model._resolve_obs(states_norm[idx], states_raw[idx])
+            if use_pre_normalized:
+                obs_vec = parse_state_vector(states_norm[idx])
+                if obs_vec is None:
+                    raise ValueError("state_json_normalize is missing or invalid.")
+                if obs_vec.shape[0] != model.obs_dim:
+                    raise ValueError(f"Normalized state length {obs_vec.shape[0]} != expected {model.obs_dim}.")
+                obs_vec = obs_vec.astype(np.float32, copy=False)
+            else:
+                obs_vec = model._resolve_obs(states_norm[idx], states_raw[idx])
         except Exception as exc:  # pragma: no cover - defensive
             errors[idx] = str(exc)
             continue
@@ -430,10 +461,10 @@ def td3_reward_fn(
         valid_indices.append(idx)
 
     if valid_samples:
-        scored = model.score_batch(valid_samples)
+        scored = model.score_batch(valid_samples, assume_obs_normalized=use_pre_normalized)
         for scored_sample, idx in zip(scored, valid_indices):
             if scored_sample.q_min is not None:
-                q_min_values[idx] = float(scored_sample.q_min)  # q_min stores q1 in TD3RewardModel
+                q1_values[idx] = float(scored_sample.q_min)  # q_min stores q1 in TD3RewardModel
             if scored_sample.q_mean is not None:
                 q_mean_values[idx] = float(scored_sample.q_mean)
 
@@ -443,7 +474,7 @@ def td3_reward_fn(
         end = min(start + completions_per_micro, size)
         if start >= end:
             continue
-        segment = q_min_values[start:end]
+        segment = q1_values[start:end]
         softmax = softmax_from_scores(segment, temperature)
         for offset, val in enumerate(softmax):
             idx = start + offset
@@ -454,7 +485,9 @@ def td3_reward_fn(
         if _CSV_WRITER is not None:
             global_step = getattr(trainer_state, "global_step", -1)
             step_value = global_step if (global_step is not None and global_step >= 0) else _MICRO_STEP_COUNTER
-            q_min_ideal_values = _broadcast_any(kwargs.get("q_min_ideal"), size)
+            sample_ids = _broadcast_any(kwargs.get("sample_id"), size)
+            selected_actions = _broadcast_any(kwargs.get("selected_action"), size)
+            q1_ideal_values = _broadcast_any(kwargs.get("q1") or kwargs.get("q1_ideal"), size)
             for idx, completion in enumerate(completions):
                 prompt_text = prompts[idx % len(prompts)] if prompts else ""
                 micro_step_value = min(
@@ -464,23 +497,35 @@ def td3_reward_fn(
                 reward_csv = rewards[idx]
                 if isinstance(reward_csv, float) and math.isnan(reward_csv):
                     reward_csv = "NaN"
-                q_min_ideal_val = q_min_ideal_values[idx] if idx < len(q_min_ideal_values) else None
-                q_min_ideal_csv = _to_scalar(q_min_ideal_val)
-                if q_min_ideal_csv is None:
-                    q_min_ideal_csv = ""
+                q1_val = q1_values[idx]
+                q1_csv = _to_scalar(q1_val)
+                if isinstance(q1_val, float) and math.isnan(q1_val):
+                    q1_csv = "NaN"
+                q1_ideal_val = q1_ideal_values[idx] if idx < len(q1_ideal_values) else None
+                q1_ideal_csv = _to_scalar(q1_ideal_val)
+                if q1_ideal_csv is None:
+                    q1_ideal_csv = ""
+                sample_id_val = sample_ids[idx] if idx < len(sample_ids) else None
+                sample_id_csv = _to_scalar(sample_id_val)
+                if sample_id_csv is None:
+                    sample_id_csv = ""
+                selected_action_val = selected_actions[idx] if idx < len(selected_actions) else None
+                selected_action_csv = selected_action_val if selected_action_val is not None else ""
                 _CSV_WRITER.writerow(
                     [
                         step_value,
                         micro_step_value,
+                        sample_id_csv,
                         prompt_text,
                         completion,
                         action_summaries[idx],
                         reward_csv,
                         "",  # target_action not used in TD3 mode
-                        q_min_ideal_csv,
-                        q_min_values[idx],
+                        q1_csv,
                         q_mean_values[idx],
                         errors[idx],
+                        selected_action_csv,
+                        q1_ideal_csv,
                     ]
                 )
             if _CSV_FILE is not None:
@@ -498,17 +543,19 @@ def reward_fn(
     reward_action_3=None,
     state_json=None,
     state_raw_json=None,
+    state_json_normalize=None,
     **kwargs,
 ):
     """Dispatch to TD3-based reward when state vectors are present."""
 
-    has_state = state_json is not None or state_raw_json is not None
+    has_state = any(v is not None for v in (state_json, state_raw_json, state_json_normalize))
     td3_env_flag = os.getenv("GRPO_USE_TD3_REWARD", "1") != "0"
     if has_state and td3_env_flag:
         return td3_reward_fn(
             completions,
             state_json=state_json,
             state_raw_json=state_raw_json,
+            state_json_normalize=state_json_normalize,
             **kwargs,
         )
     return _legacy_reward_fn(

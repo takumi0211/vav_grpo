@@ -239,15 +239,27 @@ class ActionScaler(nn.Module):
         high_t = torch.as_tensor(high, dtype=torch.float32)
         self.register_buffer("low", low_t)
         self.register_buffer("high", high_t)
+        span = high_t - low_t
+        safe_scale = torch.where(
+            span.abs() < 1e-6,
+            torch.full_like(span, 1e-6),
+            0.5 * span,
+        )
+        bias = low_t + safe_scale
+        self.register_buffer("range", span)
+        self.register_buffer("safe_scale", safe_scale)
+        self.register_buffer("bias", bias)
+
+    def scale_action(self, squashed: torch.Tensor) -> torch.Tensor:
+        """Map tanh outputs back to physical actuator space."""
+
+        return squashed * self.safe_scale + self.bias
 
     def unscale_action(self, action: torch.Tensor) -> torch.Tensor:
         """Map physical action values to tanh space [-1, 1]."""
 
-        # Clamp to bounds for safety
-        act = torch.clamp(action, self.low, self.high)
-        span = self.high - self.low
-        scaled = (act - self.low) / torch.clamp(span, min=1e-6)
-        return scaled * 2.0 - 1.0
+        act = action.to(self.low.device)
+        return torch.clamp((act - self.bias) / self.safe_scale, -0.999, 0.999)
 
 
 class TwinQNetwork(nn.Module):
@@ -417,7 +429,12 @@ class TD3RewardModel:
 
     # ----------------------------- scoring API ---------------------------- #
 
-    def score_batch(self, samples: Iterable[ParsedSample]) -> List[ParsedSample]:
+    def score_batch(
+        self,
+        samples: Iterable[ParsedSample],
+        *,
+        assume_obs_normalized: bool | None = None,
+    ) -> List[ParsedSample]:
         bucket: List[ParsedSample] = []
         obs_list: List[torch.Tensor] = []
         action_list: List[torch.Tensor] = []
@@ -431,13 +448,19 @@ class TD3RewardModel:
             return []
 
         obs_tensor = torch.stack(obs_list).to(self.device)
-        if not self.assume_state_normalized and self.normalizer is not None:
+        normalize = (
+            self.normalizer is not None
+            and not self.assume_state_normalized
+            and not bool(assume_obs_normalized)
+        )
+        if normalize:
             obs_tensor = self.normalizer.normalize_tensor(obs_tensor)
 
         action_tensor = torch.stack(action_list).to(self.device)
 
         with torch.no_grad():
             action_tanh = self.scaler.unscale_action(action_tensor)  # type: ignore[arg-type]
+            action_tanh = torch.clamp(action_tanh, -0.999, 0.999)
             q1, q2 = self.critic(obs_tensor, action_tanh)  # type: ignore[misc]
 
         q1_np = q1.squeeze(1).cpu().numpy()
