@@ -24,7 +24,7 @@ import torch
 import torch.nn as nn
 
 
-# ----------------------------- small helpers ----------------------------- #
+# ----------------------------- 小さなヘルパー群 ----------------------------- #
 
 
 def _default_device(name: str | None = None) -> torch.device:
@@ -38,22 +38,22 @@ def _default_device(name: str | None = None) -> torch.device:
 
 class _PathCompatibleUnpickler(pickle.Unpickler):
     def find_class(self, module: str, name: str):  # noqa: N802
-        # Checkpoint may have been saved on Windows
+        # チェックポイントが Windows で保存されている場合に対応
         if module.startswith("pathlib") and "WindowsPath" in name:
             return pathlib.PosixPath
-        # When original module path is missing, map to our local stubs
+        # 元のモジュールパスが無いときはローカルのスタブに差し替える
         if module == "simulator_humid.agents.rl.training_td3":
             mod = sys.modules.get(module)
             if mod is None:
                 mod = types.ModuleType(module)
                 sys.modules[module] = mod
-            # Populate expected symbols
+            # 想定されるシンボルを補完
             for cls in [TrainingConfig, ObservationNormalizer, TwinQNetwork, ActionScaler]:
                 setattr(mod, cls.__name__, cls)
             mod.build_action_scaler = build_action_scaler
             if hasattr(mod, name):
                 return getattr(mod, name)
-            # If still missing, fall back to globals (defensive)
+            # それでも無ければ globals を使う（防御的対応）
             if name in globals():
                 return globals()[name]
             raise ModuleNotFoundError(f"Missing class {name} in shim module {module}")
@@ -92,7 +92,7 @@ def action_dict_to_vector(
         oa = float(action.get("oa_damper"))
         coil = float(action.get("coil_valve"))
         fan = float(action.get("fan_speed"))
-    except (TypeError, ValueError) as exc:  # pragma: no cover - defensive
+    except (TypeError, ValueError) as exc:  # pragma: no cover - 防御的
         raise ValueError(f"Invalid actuator value: {exc}") from exc
     vector = np.concatenate([zone_array, np.array([oa, coil, fan], dtype=np.float32)], axis=0)
     return np.clip(vector, low_bounds, high_bounds)
@@ -103,7 +103,7 @@ def parse_state_vector(value: Any) -> np.ndarray | None:
 
     if value is None:
         return None
-    if isinstance(value, float) and math.isnan(value):  # pragma: no cover - defensive
+    if isinstance(value, float) and math.isnan(value):  # pragma: no cover - 防御的
         return None
     if isinstance(value, (list, tuple, np.ndarray)):
         arr = np.asarray(value, dtype=np.float32)
@@ -180,7 +180,7 @@ def build_action_bounds(config) -> Tuple[np.ndarray, np.ndarray]:
     return low, high
 
 
-# ----------------------- minimal TD3 components ------------------------ #
+# ----------------------- 最小限の TD3 コンポーネント ------------------------ #
 
 
 class TrainingConfig:
@@ -207,7 +207,7 @@ class ObservationNormalizer(nn.Module):
 
     def normalize(self, arr: np.ndarray, update: bool = False) -> np.ndarray:
         if update:
-            return arr  # training-time updates not needed here
+            return arr  # 学習時の更新は不要
         denom = np.sqrt(self.var.cpu().numpy() + self.eps)
         out = (arr - self.mean.cpu().numpy()) / denom
         return np.clip(out, -self.clip, self.clip)
@@ -228,7 +228,7 @@ class ObservationNormalizer(nn.Module):
         self.var.copy_(var)
         self.clip = float(state_dict.get("clip", self.clip))
         self.eps = float(state_dict.get("eps", self.eps))
-        # ignore "count" or other keys
+        # "count" など余分なキーは無視
         return None
 
 
@@ -266,16 +266,16 @@ class TwinQNetwork(nn.Module):
     def __init__(self, obs_dim: int, action_dim: int, hidden_sizes: Sequence[int]) -> None:
         super().__init__()
         input_dim = obs_dim + action_dim
-        # If checkpoint hidden sizes are provided, use them; otherwise match observed shapes [256,256,128]
+        # チェックポイントに hidden size があればそれを使い、無ければ観測された形状 [256,256,128] に合わせる
         h_list = list(hidden_sizes) if hidden_sizes else [256, 256, 128]
 
         def _branch():
             layers: List[nn.Module] = []
             dims = [input_dim] + h_list
             for i in range(len(dims) - 1):
-                layers.append(nn.Linear(dims[i], dims[i + 1]))  # indices 0,3,6 ...
-                layers.append(nn.LayerNorm(dims[i + 1]))        # indices 1,4,7 ...
-                layers.append(nn.ReLU())                        # non-parametric (indices 2,5,8 ...)
+                layers.append(nn.Linear(dims[i], dims[i + 1]))  # インデックス 0,3,6 ...
+                layers.append(nn.LayerNorm(dims[i + 1]))        # インデックス 1,4,7 ...
+                layers.append(nn.ReLU())                        # パラメータなし（インデックス 2,5,8 ...）
             net = nn.Sequential(*layers)
             out = nn.Linear(dims[-1], 1)
             branch = nn.Module()
@@ -332,7 +332,7 @@ class TD3RewardModel:
 
         self._load_checkpoint()
 
-    # ------------------------------ internals ----------------------------- #
+    # ------------------------------ 内部処理 ----------------------------- #
 
     def _load_checkpoint(self) -> None:
         if not self.checkpoint_path.exists():
@@ -341,7 +341,7 @@ class TD3RewardModel:
         pickle_module = types.ModuleType("pickle")
         pickle_module.Unpickler = _PathCompatibleUnpickler
 
-        # Ensure the expected module path exists for unpickling
+        # アンピクル時に必要なモジュールパスを確実に用意する
         if "simulator_humid.agents.rl.training_td3" not in sys.modules:
             shim = types.ModuleType("simulator_humid.agents.rl.training_td3")
             shim.TrainingConfig = TrainingConfig
@@ -393,7 +393,7 @@ class TD3RewardModel:
 
         self.low_bounds, self.high_bounds = build_action_bounds(self.config)
 
-    # --------------------------- parsing helpers -------------------------- #
+    # --------------------------- パース用ヘルパー -------------------------- #
 
     def _resolve_obs(self, state_json: Any, state_raw_json: Any) -> np.ndarray:
         vec_norm = parse_state_vector(state_json)
@@ -427,7 +427,7 @@ class TD3RewardModel:
         )
         return vector, action_obj
 
-    # ----------------------------- scoring API ---------------------------- #
+    # ----------------------------- スコアリング API ---------------------------- #
 
     def score_batch(
         self,
@@ -469,7 +469,7 @@ class TD3RewardModel:
 
         for idx, sample in enumerate(bucket):
             # より安全側を使う: twin-Qの最小値
-            sample.q_min = float(q1_np[idx])  # use q1 for rewards
+            sample.q_min = float(q1_np[idx])  # 報酬計算には q1 を使用
             sample.q_mean = float(q_mean[idx])
         return bucket
 
